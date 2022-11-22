@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const { obfuscateCode } = require("./JavaScriptObfuscator");
 const fs = require("fs");
 
