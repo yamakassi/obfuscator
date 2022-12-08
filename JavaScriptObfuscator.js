@@ -120,7 +120,7 @@ TODO: найти имя функции > записать имя функции 
       allWords[i][0] == "var" ||
       allWords[i][0] == "class"
     ) {
-      //   console.log(allWords[i][0]);
+     
       if (!variablesMap.has(allWords[i + 1][0]))
         variablesMap.set(allWords[i + 1][0].trim(), randomString(5));
     }
@@ -147,8 +147,13 @@ TODO: найти имя функции > записать имя функции 
   * добавление всегда выпол If 
   ?  if(str.length==3)
   */
+ 
   const allSigns = Array.from(resultCode.matchAll(/([a-z0-9{};]+)/gi));
+  const signs = resultCode.matchAll(/([a-z0-9{};]+)/gi);
   const indexReplace = new Array();
+  for (const s of signs) {
+    console.log(s[0], s.index);
+  }
   for (let i = 0; i < allSigns.length; i++) {
     if (
       allSigns[i][0] == "let" ||
@@ -156,38 +161,36 @@ TODO: найти имя функции > записать имя функции 
       allSigns[i][0] == "var" ||
       allSigns[i][0] == "return"
     ) {
-      let j = i;
-      while (!allSigns[j][0].includes(";")) {
-        j++;
-        if (allSigns[j][0].includes(";")) {
-          console.log(allSigns[j][0]);
-          console.log("_--");
-          indexReplace.push(allSigns[j].index + allSigns[j][0].length);
+     
+          indexReplace.push(allSigns[i].index -1 );
         }
         /* 
           if (!variablesMap.has(allWords[i + 1][0]))
             variablesMap.set(allWords[i + 1][0].trim(), randomString(5));*/
-      }
-    }
+      
+    
   }
-  console.log(indexReplace);
-  let upCursorIndex = 0;
+ 
+  
+  let upGG = 0;
+  let obfName = `\nif(Date!=0) console.log("YOU vzyali chujoi code @@@ chertovie");\n`;//21?
+  console.log("GGGG", obfName.length);
+  
   for (let i = 0; i < indexReplace.length; i++) {
-    console.log(indexReplace[i]);
+    
 
-    let obfName = "\r@\r";
-    console.log(indexReplace);
+    
     resultCode = replaceAt(
       resultCode,
-      indexReplace[i] + upCursorIndex,
+      indexReplace[i] +upGG,
       obfName,
-      obfName.length - 1
+      0
     );
-
-    upCursorIndex += obfName.length - 1;
+    console.log("----", upGG, indexReplace[i]);
+    upGG +=obfName.length;
   }
 
-  // resultCode = resultCode.replace(reSpaceTab, "");
+//   resultCode = resultCode.replace(reSpaceTab, "");
   return resultCode;
 };
 
