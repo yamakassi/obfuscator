@@ -1,4 +1,4 @@
 # obfuscator
-npm install 
-npm link 
-обфускатор запус командой obfuscator obf sample.js
+1)npm install 
+2)npm link 
+3)обфускатор запус командой obfuscator obf sample.js
